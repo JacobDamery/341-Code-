@@ -26,6 +26,48 @@
             app:layout_constraintBottom_toBottomOf="parent"
             app:layout_constraintStart_toStartOf="parent"
             app:layout_constraintEnd_toEndOf="parent" />
+
+        <TextView
+            android:id="@+id/following"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_marginTop="56dp"
+            android:layout_marginEnd="172dp"
+            android:background="#000000"
+            android:clickable="true"
+            android:fontFamily="@font/roboto_mono_bold"
+            android:text="Following"
+            android:textColor="#FFF5F5"
+            app:layout_constraintEnd_toEndOf="parent"
+            app:layout_constraintTop_toTopOf="parent" />
+
+        <TextView
+            android:id="@+id/forYou"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_marginTop="56dp"
+            android:layout_marginEnd="260dp"
+            android:background="#000000"
+            android:clickable="true"
+            android:fontFamily="@font/roboto_mono_bold"
+            android:text="For You"
+            android:textColor="#FFF5F5"
+            app:layout_constraintEnd_toEndOf="parent"
+            app:layout_constraintTop_toTopOf="parent" />
+
+        <TextView
+            android:id="@+id/friends"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_marginTop="56dp"
+            android:layout_marginEnd="104dp"
+            android:background="#000000"
+            android:clickable="true"
+            android:fontFamily="@font/roboto_mono_bold"
+            android:text="Friends"
+            android:textColor="#FFF5F5"
+            app:layout_constraintEnd_toEndOf="parent"
+            app:layout_constraintTop_toTopOf="parent" />
     </androidx.constraintlayout.widget.ConstraintLayout>
 
     <!-- ✅ FAB-style Bottom Navigation Bar -->

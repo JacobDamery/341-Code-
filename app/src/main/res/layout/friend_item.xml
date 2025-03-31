@@ -1,0 +1,56 @@
+<?xml version="1.0" encoding="utf-8"?>
+<LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    android:orientation="horizontal"
+    android:layout_width="match_parent"
+    android:layout_height="wrap_content"
+    android:background="#1E1E1E"
+    android:padding="12dp"
+    android:layout_margin="8dp"
+    android:gravity="center_vertical"
+    android:layout_marginBottom="4dp"
+    android:layout_marginTop="4dp"
+    android:clipToPadding="false"
+    android:elevation="2dp"
+    android:layout_gravity="center"
+    android:backgroundTint="#1E1E1E">
+
+    <ImageView
+        android:id="@+id/profileImage"
+        android:layout_width="40dp"
+        android:layout_height="40dp"
+        android:src="@drawable/user"
+        app:tint="#FFFFFF"
+        android:background="@drawable/user"
+        android:padding="4dp"
+        android:layout_marginEnd="12dp" />
+
+    <TextView
+        android:id="@+id/usernameText"
+        android:layout_width="0dp"
+        android:layout_weight="1"
+        android:layout_height="wrap_content"
+        android:text="username"
+        android:textColor="#FFFFFF"
+        android:textStyle="bold"
+        android:textSize="16sp" />
+
+    <Button
+        android:id="@+id/viewProfileBtn"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:text="view profile"
+        android:textAllCaps="false"
+        android:textColor="#000000"
+        android:backgroundTint="#F2F2F2"
+        android:layout_marginEnd="8dp" />
+
+    <Button
+        android:id="@+id/pokeBtn"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:text="poke"
+        android:textAllCaps="false"
+        android:textColor="#000000"
+        android:backgroundTint="#F2F2F2" />
+</LinearLayout>
