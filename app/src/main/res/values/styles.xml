@@ -1,0 +1,16 @@
+<?xml version="1.0" encoding="utf-8"?>
+<resources>
+    <!-- Style for the FAB shape appearance -->
+    <style name="FABCircle" parent="ShapeAppearance.MaterialComponents.SmallComponent">
+        <item name="cornerSize">50%</item>
+    </style>
+
+    <!-- Style applied directly to the FloatingActionButton -->
+    <style name="CustomFAB" parent="Widget.MaterialComponents.FloatingActionButton">
+        <item name="shapeAppearanceOverlay">@style/FABCircle</item>
+        <item name="backgroundTint">@color/orange</item>
+        <item name="strokeColor">@android:color/black</item>
+        <item name="strokeWidth">4dp</item>
+    </style>
+
+</resources>
