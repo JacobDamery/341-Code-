@@ -10,7 +10,7 @@ public class AccountActivity extends AppCompatActivity {
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
-        setContentView(R.layout.account);
+        setContentView(R.layout.account_activity);
 
         // ✅ Setup Bottom Navigation
         BottomNavigationView bottomNav = findViewById(R.id.bottom_navigation);
