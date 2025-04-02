@@ -66,7 +66,7 @@ public class Goals extends AppCompatActivity {
                 tvSleepInfo.setText("You've slept " + sleep + " hours out of 8.");
             }
         });
-        etSleep.addTextChangedListener(new TextWatcher() {
+        etCalories.addTextChangedListener(new TextWatcher() {
             @Override
             public void beforeTextChanged(CharSequence s, int start, int count, int after) {}
 
@@ -76,7 +76,7 @@ public class Goals extends AppCompatActivity {
             @Override
             public void afterTextChanged(Editable s) {
                 String Calorie = s.toString().isEmpty() ? "0" : s.toString();
-                tvSleepInfo.setText("You've slept " + Calorie + " hours out of 8.");
+                tvCaloriesInfo.setText("You've burned " + Calorie + "  out of 2000.");
             }
         });
     }

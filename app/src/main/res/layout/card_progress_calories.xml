@@ -63,7 +63,7 @@
             android:id="@+id/tvCalorieGoal"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
-            android:text="You've taken - steps out of 2,000."
+            android:text="You've burned - calories out of 2,000."
             android:textSize="16sp"
             android:textColor="@android:color/white"
             android:layout_marginTop="4dp"/>
