@@ -2,6 +2,9 @@ package com.example.stiveworkoutapp;
 
 import android.content.Intent;
 import android.os.Bundle;
+import android.widget.Button;
+import android.widget.TextView;
+
 import androidx.appcompat.app.AppCompatActivity;
 import com.google.android.material.bottomappbar.BottomAppBar;
 import com.google.android.material.bottomnavigation.BottomNavigationView;
@@ -25,6 +28,47 @@ public class AccountFeed extends AppCompatActivity {
         FloatingActionButton fab = findViewById(R.id.fab);
         fab.setOnClickListener(view -> {
             Intent intent = new Intent(this, CreatePost.class);
+            startActivity(intent);
+            overridePendingTransition(0, 0);
+        });
+
+        // Setup navigation buttons
+        Button forYouButton = findViewById(R.id.for_you_button);
+        Button followingButton = findViewById(R.id.following_button);
+        Button friendsButton = findViewById(R.id.friends_button);
+
+        friendsButton.setOnClickListener(view -> {
+            Intent intent = new Intent(this, FriendsList.class);
+            startActivity(intent);
+            overridePendingTransition(0, 0);
+        });
+
+        followingButton.setOnClickListener(view -> {
+            // Currently redirects to same page
+            Intent intent = new Intent(this, AccountFeed.class);
+            startActivity(intent);
+            overridePendingTransition(0, 0);
+        });
+
+        // For You is active, no click handler needed
+    }
+
+    private void setupNavigation() {
+        TextView forYouText = findViewById(R.id.for_you_text);
+        TextView followingText = findViewById(R.id.following_text);
+        TextView friendsText = findViewById(R.id.friends_text);
+
+        friendsText.setOnClickListener(v -> {
+            Intent intent = new Intent(this, FriendsList.class);
+            startActivity(intent);
+            overridePendingTransition(0, 0);
+        });
+
+        // For You is active, no need for click handler
+
+        followingText.setOnClickListener(v -> {
+            // Currently redirects to same page
+            Intent intent = new Intent(this, AccountFeed.class);
             startActivity(intent);
             overridePendingTransition(0, 0);
         });
