@@ -7,6 +7,7 @@ import android.text.TextWatcher;
 import android.widget.EditText;
 import android.widget.TextView;
 import androidx.appcompat.app.AppCompatActivity;
+import com.google.android.material.bottomappbar.BottomAppBar;
 import com.google.android.material.bottomnavigation.BottomNavigationView;
 import com.google.android.material.floatingactionbutton.FloatingActionButton;
 
@@ -16,16 +17,21 @@ public class Goals extends AppCompatActivity {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.goals);
 
+        // ✅ Attach BottomAppBar to enable FAB cradle
+        BottomAppBar bottomAppBar = findViewById(R.id.bottom_app_bar);
+        setSupportActionBar(bottomAppBar);
+
+        // ✅ Bottom Nav
         BottomNavigationView bottomNav = findViewById(R.id.bottom_navigation);
         new BottomNavigationHandler(this, R.id.nav_goals)
                 .setupBottomNavigation(bottomNav);
 
-        // ✅ Hook up FAB to launch CreatePost activity
+        // ✅ FAB click → CreatePost
         FloatingActionButton fab = findViewById(R.id.fab);
         fab.setOnClickListener(view -> {
             Intent intent = new Intent(this, CreatePost.class);
             startActivity(intent);
-            overridePendingTransition(0, 0); // optional: disable transition animation
+            overridePendingTransition(0, 0);
         });
 
         // ✅ Find Views for Steps and Sleep
