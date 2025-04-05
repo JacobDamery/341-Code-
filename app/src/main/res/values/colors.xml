@@ -3,5 +3,8 @@
     <color name="black">#FF000000</color>
     <color name="white">#FFFFFFFF</color>
     <color name="orange">#FFA500</color>
+    <color name="my_primary">#FF7700</color> <!-- bright orange -->
+    <color name="on_my_primary">#FFFFFF</color> <!-- white text on orange -->
+
 
 </resources>

@@ -1,8 +1,13 @@
 <resources xmlns:tools="http://schemas.android.com/tools">
     <!-- Base application theme. -->
     <style name="Base.Theme.StiveWorkoutApp" parent="Theme.Material3.DayNight.NoActionBar">
-        <!-- Customize your light theme here. -->
-        <!-- <item name="colorPrimary">@color/my_light_primary</item> -->
+        <!-- Override Material3 colors -->
+        <item name="colorPrimary">@color/my_primary</item>
+        <item name="colorOnPrimary">@color/on_my_primary</item>
+        <item name="colorPrimaryContainer">@color/my_primary</item>
+        <item name="colorOnPrimaryContainer">@color/on_my_primary</item>
+
+        <!-- Optional: button background override -->
     </style>
 
     <style name="Theme.StiveWorkoutApp" parent="Base.Theme.StiveWorkoutApp" />
