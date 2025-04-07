@@ -27,6 +27,11 @@
         <activity android:name=".CreatePost" />
         <activity android:name=".AccountFeed" />
         <activity android:name=".AccountActivity" />
+        <activity android:name=".FriendsList" />
+
+        <meta-data
+            android:name="preloaded_fonts"
+            android:resource="@array/preloaded_fonts" />
 
     </application>
 
