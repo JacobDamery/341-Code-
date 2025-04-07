@@ -74,6 +74,7 @@
             <include layout="@layout/card_progress" />
             <include layout="@layout/card_progress_sleep" />
             <include layout="@layout/card_progress_calories" />
+            <include layout="@layout/weekly_progress" />
         </LinearLayout>
 
         <!-- Weekly Progress Chart -->
@@ -95,16 +96,4 @@
         android:layout_height="wrap_content"
         android:layout_gravity="bottom" />
 
-    <!-- BottomNavigationView -->
-    <com.google.android.material.bottomnavigation.BottomNavigationView
-        android:id="@+id/bottom_navigation"
-        android:layout_width="match_parent"
-        android:layout_height="wrap_content"
-        android:layout_gravity="bottom"
-        android:background="#111111"
-        app:itemIconTint="@color/nav_item_color"
-        app:itemTextColor="@color/nav_item_color"
-        app:labelVisibilityMode="labeled"
-        app:itemActiveIndicatorStyle="@style/NoIndicator"
-        app:menu="@menu/bottom_nav_menu" />
 </androidx.coordinatorlayout.widget.CoordinatorLayout>
