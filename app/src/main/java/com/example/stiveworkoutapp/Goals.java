@@ -48,9 +48,12 @@ public class Goals extends AppCompatActivity {
             @Override
             public void afterTextChanged(Editable s) {
 <<<<<<< Updated upstream
+<<<<<<< Updated upstream
                 String steps = s.toString().isEmpty() ? "0" : s.toString();
                 tvStepsInfo.setText("You've taken " + steps + " steps out of 20,000.");
 =======
+=======
+>>>>>>> Stashed changes
                 String stepsStr = s.toString().isEmpty() ? "0" : s.toString();
                 try {
                     int steps = Integer.parseInt(stepsStr);
@@ -63,6 +66,9 @@ public class Goals extends AppCompatActivity {
                 } catch (NumberFormatException e) {
                     etSteps.setError("Invalid number");
                 }
+<<<<<<< Updated upstream
+>>>>>>> Stashed changes
+=======
 >>>>>>> Stashed changes
             }
         });
@@ -78,9 +84,12 @@ public class Goals extends AppCompatActivity {
             @Override
             public void afterTextChanged(Editable s) {
 <<<<<<< Updated upstream
+<<<<<<< Updated upstream
                 String sleep = s.toString().isEmpty() ? "0" : s.toString();
                 tvSleepInfo.setText("You've slept " + sleep + " hours out of 8.");
 =======
+=======
+>>>>>>> Stashed changes
                 String sleepStr = s.toString().isEmpty() ? "0" : s.toString();
                 try {
                     int sleep = Integer.parseInt(sleepStr);
@@ -93,8 +102,14 @@ public class Goals extends AppCompatActivity {
                 } catch (NumberFormatException e) {
                     etSleep.setError("Invalid number");
                 }
+<<<<<<< Updated upstream
 >>>>>>> Stashed changes
             }
+=======
+            }
+
+        });
+>>>>>>> Stashed changes
 
         });
         etCalories.addTextChangedListener(new TextWatcher() {
@@ -107,9 +122,12 @@ public class Goals extends AppCompatActivity {
             @Override
             public void afterTextChanged(Editable s) {
 <<<<<<< Updated upstream
+<<<<<<< Updated upstream
                 String Calorie = s.toString().isEmpty() ? "0" : s.toString();
                 tvCaloriesInfo.setText("You've burned " + Calorie + "  out of 2000.");
 =======
+=======
+>>>>>>> Stashed changes
                 String calorieStr = s.toString().isEmpty() ? "0" : s.toString();
                 try {
                     int calories = Integer.parseInt(calorieStr);
@@ -122,6 +140,9 @@ public class Goals extends AppCompatActivity {
                 } catch (NumberFormatException e) {
                     etCalories.setError("Invalid number");
                 }
+<<<<<<< Updated upstream
+>>>>>>> Stashed changes
+=======
 >>>>>>> Stashed changes
             }
 
