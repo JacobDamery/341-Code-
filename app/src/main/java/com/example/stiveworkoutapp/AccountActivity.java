@@ -2,6 +2,8 @@ package com.example.stiveworkoutapp;
 
 import android.content.Intent;
 import android.os.Bundle;
+import android.view.View;
+
 import androidx.appcompat.app.AppCompatActivity;
 import com.google.android.material.bottomnavigation.BottomNavigationView;
 import com.google.android.material.floatingactionbutton.FloatingActionButton;
@@ -27,10 +29,18 @@ public class AccountActivity extends AppCompatActivity {
         findViewById(R.id.settings_icon).setOnClickListener(view -> {
             Intent intent = new Intent(this, SettingsActivity.class);
             startActivity(intent);
-            // No transition animation
-            overridePendingTransition(0, 0);
+        });
+
+        // Friends button click handler
+        findViewById(R.id.friends_icon).setOnClickListener(view -> {
+            Intent intent = new Intent(this, FriendsList.class);
+            startActivity(intent);
         });
 
 
+    }
+    public void openPostsActivity(View view) {
+        Intent intent = new Intent(this, PostsActivity.class);
+        startActivity(intent);
     }
 }

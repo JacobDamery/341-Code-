@@ -494,7 +494,8 @@
                         android:text="see all"
                         android:textColor="@android:color/white"
                         android:textSize="14sp"
-                        android:textStyle="bold" />
+                        android:textStyle="bold"
+                        android:onClick="openPostsActivity"/>
 
                     <TextView
                         android:id="@+id/see_all_arrow"
@@ -504,7 +505,8 @@
                         android:textColor="@android:color/white"
                         android:layout_marginBottom="4dp"
                         android:textSize="20sp"
-                        android:textStyle="bold" />
+                        android:textStyle="bold"
+                        android:onClick="openPostsActivity"/>
                 </LinearLayout>
 
             </LinearLayout>
@@ -521,20 +523,20 @@
                     android:layout_height="100dp"
                     android:layout_marginEnd="8dp"
                     android:scaleType="centerCrop"
-                    android:src="@drawable/camera" />
+                    android:src="@drawable/post1" />
 
                 <ImageView
                     android:layout_width="100dp"
                     android:layout_height="100dp"
                     android:layout_marginEnd="8dp"
                     android:scaleType="centerCrop"
-                    android:src="@drawable/camera" />
+                    android:src="@drawable/post2" />
 
                 <ImageView
                     android:layout_width="100dp"
                     android:layout_height="100dp"
                     android:scaleType="centerCrop"
-                    android:src="@drawable/camera" />
+                    android:src="@drawable/post3" />
             </LinearLayout>
 
         </LinearLayout>

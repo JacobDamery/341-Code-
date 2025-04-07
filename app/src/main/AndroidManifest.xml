@@ -22,12 +22,16 @@
             </intent-filter>
         </activity>
 
-        <!-- ✅ Newly added Activities -->
+        <!-- Newly added Activities -->
         <activity android:name=".Goals" />
         <activity android:name=".CreatePost" />
         <activity android:name=".AccountFeed" />
         <activity android:name=".AccountActivity" />
         <activity android:name=".FriendsList" />
+        <activity android:name=".SettingsActivity" />
+        <activity android:name=".PostsActivity" />
+
+
 
         <meta-data
             android:name="preloaded_fonts"
