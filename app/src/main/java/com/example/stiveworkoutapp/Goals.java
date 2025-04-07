@@ -139,9 +139,7 @@ public class Goals extends AppCompatActivity {
                 }
                 saveDailyData();
             }
-            }
 
-        });
 
         });
 
