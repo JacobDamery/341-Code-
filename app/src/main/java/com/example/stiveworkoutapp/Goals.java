@@ -104,8 +104,18 @@ public class Goals extends AppCompatActivity {
             @Override public void onTextChanged(CharSequence s, int start, int before, int count) {}
             @Override
             public void afterTextChanged(Editable s) {
-                String steps = s.toString().isEmpty() ? "0" : s.toString();
-                tvStepsInfo.setText("You've taken " + steps + " steps out of 20,000.");
+                String stepsStr = s.toString().isEmpty() ? "0" : s.toString();
+                try {
+                    int steps = Integer.parseInt(stepsStr);
+                    if (steps > 100000) {
+                        etSteps.setError("Too many steps! Enter a value less than 100,000.");
+                        return;
+                    }
+                    tvStepsInfo.setText("You've taken " + steps + " steps out of 20,000.");
+                    saveDailyData();
+                } catch (NumberFormatException e) {
+                    etSteps.setError("Invalid number");
+                }
                 saveDailyData();
             }
         });
@@ -115,10 +125,24 @@ public class Goals extends AppCompatActivity {
             @Override public void onTextChanged(CharSequence s, int start, int before, int count) {}
             @Override
             public void afterTextChanged(Editable s) {
-                String sleep = s.toString().isEmpty() ? "0" : s.toString();
-                tvSleepInfo.setText("You've slept " + sleep + " hours out of 8.");
+                String sleepStr = s.toString().isEmpty() ? "0" : s.toString();
+                try {
+                    int sleep = Integer.parseInt(sleepStr);
+                    if (sleep > 24) {
+                        etSleep.setError("You can't sleep more than 24 hours in a day!");
+                        return;
+                    }
+                    tvSleepInfo.setText("You've slept " + sleep + " hours out of 8.");
+                    saveDailyData();
+                } catch (NumberFormatException e) {
+                    etSleep.setError("Invalid number");
+                }
                 saveDailyData();
             }
+            }
+
+        });
+
         });
 
         etCalories.addTextChangedListener(new TextWatcher() {
@@ -126,10 +150,25 @@ public class Goals extends AppCompatActivity {
             @Override public void onTextChanged(CharSequence s, int start, int before, int count) {}
             @Override
             public void afterTextChanged(Editable s) {
+                String calorieStr = s.toString().isEmpty() ? "0" : s.toString();
+                try {
+                    int calories = Integer.parseInt(calorieStr);
+                    if (calories > 1000000) {
+                        etCalories.setError("That's too many calories burned! Try under 1,000,000.");
+                        return;
+                    }
+                    tvCaloriesInfo.setText("You've burned " + calories + " out of 2000.");
+                    saveDailyData();
+                } catch (NumberFormatException e) {
+                    etCalories.setError("Invalid number");
+                }
+
                 String calorie = s.toString().isEmpty() ? "0" : s.toString();
                 tvCaloriesInfo.setText("You've burned " + calorie + " out of 2000.");
                 saveDailyData();
+
             }
+
         });
     }
 
