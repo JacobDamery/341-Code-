@@ -8,15 +8,13 @@
     android:background="@android:color/black"
     android:padding="16dp">
 
-    <!-- Top Bar / Toolbar (optional) -->
-    <!-- You can replace this with an actual Toolbar if you want an action bar at the top -->
     <LinearLayout
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
         android:orientation="horizontal"
         android:paddingVertical="8dp">
 
-        <!-- Back button or menu icon -->
+        <!-- Back button -->
         <ImageView
             android:id="@+id/back_arrow"
             android:layout_width="30dp"
@@ -33,7 +31,6 @@
             android:layout_gravity="center"
             android:layout_marginStart="100dp" />
 
-        <!-- Profile icon on the right, if needed -->
         <View
             android:layout_width="0dp"
             android:layout_height="match_parent"
@@ -47,7 +44,7 @@
             app:tint="@color/white" />
     </LinearLayout>
 
-    <!-- Scrollable area for settings items -->
+    <!-- Scrollable area -->
     <ScrollView
         android:layout_width="match_parent"
         android:layout_height="0dp"
