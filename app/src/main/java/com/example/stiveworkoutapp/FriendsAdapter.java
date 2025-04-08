@@ -1,6 +1,5 @@
 package com.example.stiveworkoutapp;
 
-import android.app.Activity;
 import android.content.Context;
 import android.content.Intent;
 import android.view.LayoutInflater;
@@ -12,20 +11,25 @@ import android.widget.TextView;
 import androidx.annotation.NonNull;
 import androidx.recyclerview.widget.RecyclerView;
 
-import java.util.*;
+import java.util.List;
 
 public class FriendsAdapter extends RecyclerView.Adapter<FriendsAdapter.FriendViewHolder> {
-    private List<Friend> friends;
-    private Context context;
+    private final List<Friend> friends;
+    private final OnFriendClickListener listener;
 
-    public FriendsAdapter(List<Friend> friends) {
+    public interface OnFriendClickListener {
+        void onFriendClick(Friend friend);
+    }
+
+    public FriendsAdapter(List<Friend> friends, OnFriendClickListener listener) {
         this.friends = friends;
+        this.listener = listener;
     }
 
     @NonNull
     @Override
     public FriendViewHolder onCreateViewHolder(@NonNull ViewGroup parent, int viewType) {
-        context = parent.getContext();
+        Context context = parent.getContext();
         View view = LayoutInflater.from(context)
                 .inflate(R.layout.friend_item, parent, false);
         return new FriendViewHolder(view);
@@ -36,11 +40,8 @@ public class FriendsAdapter extends RecyclerView.Adapter<FriendsAdapter.FriendVi
         Friend friend = friends.get(position);
         holder.nameTextView.setText(friend.getName());
 
-        holder.viewProfileButton.setOnClickListener(v -> {
-            Intent intent = new Intent(context, AccountActivity.class);
-            context.startActivity(intent);
-            ((Activity) context).overridePendingTransition(0, 0);
-        });
+        // Bind the click listener to the view profile button
+        holder.viewProfileButton.setOnClickListener(v -> listener.onFriendClick(friend));
     }
 
     @Override

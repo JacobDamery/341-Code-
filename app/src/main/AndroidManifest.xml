@@ -30,6 +30,7 @@
         <activity android:name=".FriendsList" />
         <activity android:name=".SettingsActivity" />
         <activity android:name=".PostsActivity" />
+        <activity android:name=".UserProfileActivity" />
 
 
 
