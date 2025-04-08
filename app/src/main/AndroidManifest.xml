@@ -30,8 +30,13 @@
         <activity android:name=".FriendsList" />
         <activity android:name=".SettingsActivity" />
         <activity android:name=".PostsActivity" />
-        <activity android:name=".UserProfileActivity" />
-
+        <activity android:name=".AvatarActivity" />
+        <activity android:name=".ChatsActivity" />
+        <activity android:name=".LanguageActivity" />
+        <activity android:name=".NotificationsActivity" />
+        <activity android:name=".PersonalInfoActivity" />
+        <activity android:name=".PrivacyActivity" />
+        <activity android:name=".StorageActivity" />
 
 
         <meta-data
