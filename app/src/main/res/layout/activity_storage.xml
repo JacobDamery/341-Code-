@@ -6,7 +6,9 @@
     android:layout_height="match_parent"
     android:background="@android:color/black"
     android:orientation="vertical"
-    android:padding="16dp">
+    android:paddingTop="32dp"
+    android:paddingHorizontal="32dp"
+    android:paddingBottom="32dp">
 
     <!-- Top Bar -->
     <LinearLayout

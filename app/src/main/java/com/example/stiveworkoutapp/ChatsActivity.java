@@ -1,5 +1,6 @@
 package com.example.stiveworkoutapp;
 
+import android.content.Intent;
 import android.os.Bundle;
 import android.view.View;
 import android.widget.ImageView;
@@ -11,13 +12,10 @@ public class ChatsActivity extends AppCompatActivity {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_chats);
 
-        // Set up the back arrow to finish this activity
-        ImageView backArrow = findViewById(R.id.chats_back_arrow);
-        backArrow.setOnClickListener(new View.OnClickListener() {
-            @Override
-            public void onClick(View v) {
-                finish();
-            }
+        findViewById(R.id.chats_back_arrow).setOnClickListener(view -> {
+            Intent intent = new Intent(ChatsActivity.this, SettingsActivity.class);
+            startActivity(intent);
+            finish();
         });
     }
 }

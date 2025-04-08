@@ -6,7 +6,9 @@
     android:layout_height="match_parent"
     android:background="@android:color/black"
     android:orientation="vertical"
-    android:padding="16dp">
+    android:paddingTop="32dp"
+    android:paddingHorizontal="32dp"
+    android:paddingBottom="32dp">
 
     <!-- Top Bar -->
     <LinearLayout
@@ -86,7 +88,7 @@
                     android:layout_width="20dp"
                     android:layout_height="20dp"
                     android:src="@drawable/baseline_arrow_forward_24"
-                    android:tint="@android:color/white"
+                    app:tint="@android:color/white"
                     android:contentDescription="Next" />
             </LinearLayout>
 
