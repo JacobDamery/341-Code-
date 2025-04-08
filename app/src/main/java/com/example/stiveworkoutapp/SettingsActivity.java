@@ -4,6 +4,7 @@ import android.content.Intent;
 import android.os.Bundle;
 import android.view.View;
 import android.widget.ImageView;
+import android.widget.LinearLayout;
 
 import androidx.appcompat.app.AppCompatActivity;
 
@@ -18,11 +19,11 @@ public class SettingsActivity extends AppCompatActivity {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.settings_activity);
 
-        // Get references to the top bar views
+        // Top bar views
         ImageView backArrow = findViewById(R.id.back_arrow);
         ImageView friendsIcon = findViewById(R.id.friends_icon);
 
-        // Set click listener for the back arrow to navigate to AccountActivity
+        // Navigate back to AccountActivity
         backArrow.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View view) {
@@ -31,7 +32,7 @@ public class SettingsActivity extends AppCompatActivity {
             }
         });
 
-        // Set click listener for the friends icon to navigate to FriendsList
+        // Navigate to FriendsList
         friendsIcon.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View view) {
@@ -40,6 +41,79 @@ public class SettingsActivity extends AppCompatActivity {
             }
         });
 
+        // Setting rows listeners:
+
+        // Personal Information row
+        LinearLayout personalInfoLayout = findViewById(R.id.personalInfoLayout);
+        personalInfoLayout.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View view) {
+                Intent intent = new Intent(SettingsActivity.this, PersonalInfoActivity.class);
+                startActivity(intent);
+            }
+        });
+
+        // Privacy row
+        LinearLayout privacyLayout = findViewById(R.id.privacyLayout);
+        privacyLayout.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View view) {
+                Intent intent = new Intent(SettingsActivity.this, PrivacyActivity.class);
+                startActivity(intent);
+            }
+        });
+
+        // Avatar row
+        LinearLayout avatarLayout = findViewById(R.id.avatarLayout);
+        avatarLayout.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View view) {
+                Intent intent = new Intent(SettingsActivity.this, AvatarActivity.class);
+                startActivity(intent);
+            }
+        });
+
+        // Chats row
+        LinearLayout chatsLayout = findViewById(R.id.chatsLayout);
+        chatsLayout.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View view) {
+                Intent intent = new Intent(SettingsActivity.this, ChatsActivity.class);
+                startActivity(intent);
+            }
+        });
+
+        // Notifications row
+        LinearLayout notificationsLayout = findViewById(R.id.notificationsLayout);
+        notificationsLayout.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View view) {
+                Intent intent = new Intent(SettingsActivity.this, NotificationsActivity.class);
+                startActivity(intent);
+            }
+        });
+
+        // Storage and Data row
+        LinearLayout storageLayout = findViewById(R.id.storageLayout);
+        storageLayout.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View view) {
+                Intent intent = new Intent(SettingsActivity.this, StorageActivity.class);
+                startActivity(intent);
+            }
+        });
+
+        // App Language row
+        LinearLayout languageLayout = findViewById(R.id.languageLayout);
+        languageLayout.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View view) {
+                Intent intent = new Intent(SettingsActivity.this, LanguageActivity.class);
+                startActivity(intent);
+            }
+        });
+
+        // Bottom Navigation setup
         BottomNavigationView bottomNav = findViewById(R.id.bottom_navigation);
         new BottomNavigationHandler(this, R.id.nav_account)
                 .setupBottomNavigation(bottomNav);

@@ -60,6 +60,7 @@
 
             <!-- Personal Information -->
             <LinearLayout
+                android:id="@+id/personalInfoLayout"
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
                 android:gravity="center_vertical"
@@ -99,6 +100,7 @@
 
             <!-- Privacy -->
             <LinearLayout
+                android:id="@+id/privacyLayout"
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
                 android:gravity="center_vertical"
@@ -138,6 +140,7 @@
 
             <!-- Avatar -->
             <LinearLayout
+                android:id="@+id/avatarLayout"
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
                 android:gravity="center_vertical"
@@ -177,6 +180,7 @@
 
             <!-- Chats -->
             <LinearLayout
+                android:id="@+id/chatsLayout"
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
                 android:gravity="center_vertical"
@@ -216,6 +220,7 @@
 
             <!-- Notifications -->
             <LinearLayout
+                android:id="@+id/notificationsLayout"
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
                 android:gravity="center_vertical"
@@ -247,7 +252,7 @@
                     <TextView
                         android:layout_width="wrap_content"
                         android:layout_height="wrap_content"
-                        android:text="Message, group & call tones"
+                        android:text="Message, group &amp; call tones"
                         android:textColor="@android:color/darker_gray"
                         android:textSize="14sp" />
                 </LinearLayout>
@@ -255,6 +260,7 @@
 
             <!-- Storage and data -->
             <LinearLayout
+                android:id="@+id/storageLayout"
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
                 android:gravity="center_vertical"
@@ -294,6 +300,7 @@
 
             <!-- App language -->
             <LinearLayout
+                android:id="@+id/languageLayout"
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
                 android:gravity="center_vertical"
