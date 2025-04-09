@@ -30,15 +30,21 @@ public class PostsActivity extends AppCompatActivity {
         postsRecyclerView.setLayoutManager(new GridLayoutManager(this, 3));
 
         // dummy posts
-        List<Post> dummyPosts = new ArrayList<>();
-        dummyPosts.add(new Post(R.drawable.post1));
-        dummyPosts.add(new Post(R.drawable.post2));
-        dummyPosts.add(new Post(R.drawable.post3));
-        // Add more posts as needed...
+        List<Post> allPosts = new ArrayList<>();
 
-        // Initialize adapter and set it to the RecyclerView
-        postsAdapter = new PostsAdapter(dummyPosts);
+// Add dummy posts
+        allPosts.addAll(PostRepository.getAllPosts());
+        allPosts.add(new Post(R.drawable.post1));
+        allPosts.add(new Post(R.drawable.post2));
+        allPosts.add(new Post(R.drawable.post3));
+
+// Add user-created posts from the repository
+
+
+// Initialize adapter and set to RecyclerView
+        postsAdapter = new PostsAdapter(allPosts);
         postsRecyclerView.setAdapter(postsAdapter);
+
     }
 
     public void goBackToProfile(View view) {

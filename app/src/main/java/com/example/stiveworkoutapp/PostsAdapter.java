@@ -1,5 +1,8 @@
 package com.example.stiveworkoutapp;
 
+import android.content.Context;
+import android.graphics.drawable.Drawable;
+import android.net.Uri;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
@@ -8,13 +11,12 @@ import android.widget.ImageView;
 import androidx.annotation.NonNull;
 import androidx.recyclerview.widget.RecyclerView;
 
-import com.example.stiveworkoutapp.Post;
-
+import java.io.InputStream;
 import java.util.List;
 
 public class PostsAdapter extends RecyclerView.Adapter<PostsAdapter.PostViewHolder> {
 
-    private List<Post> postList; //
+    private List<Post> postList;
 
     public PostsAdapter(List<Post> postList) {
         this.postList = postList;
@@ -28,11 +30,29 @@ public class PostsAdapter extends RecyclerView.Adapter<PostsAdapter.PostViewHold
         return new PostViewHolder(view);
     }
 
-    // Bind data
     @Override
     public void onBindViewHolder(@NonNull PostViewHolder holder, int position) {
         Post post = postList.get(position);
-        holder.postImage.setImageResource(post.getImageResId());
+        Context context = holder.itemView.getContext();
+
+        if (post.isUriBased()) {
+            Uri uri = post.getImageUri();
+            try {
+                InputStream inputStream = context.getContentResolver().openInputStream(uri);
+                if (inputStream != null) {
+                    Drawable drawable = Drawable.createFromStream(inputStream, uri.toString());
+                    holder.postImage.setImageDrawable(drawable);
+                    inputStream.close();
+                } else {
+
+                }
+            } catch (Exception e) {
+                e.printStackTrace();
+              // fallback on exception
+            }
+        } else {
+            holder.postImage.setImageResource(post.getImageResId());
+        }
     }
 
     @Override
@@ -40,7 +60,12 @@ public class PostsAdapter extends RecyclerView.Adapter<PostsAdapter.PostViewHold
         return postList.size();
     }
 
-    // Inner class for the ViewHolder
+    // ✅ Add this method to refresh the data
+    public void updatePosts(List<Post> newPosts) {
+        this.postList = newPosts;
+        notifyDataSetChanged();
+    }
+
     public static class PostViewHolder extends RecyclerView.ViewHolder {
         ImageView postImage;
 

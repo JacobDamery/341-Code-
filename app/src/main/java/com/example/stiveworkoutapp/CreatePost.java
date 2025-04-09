@@ -1,6 +1,9 @@
 package com.example.stiveworkoutapp;
 
+import android.content.ContentResolver;
 import android.content.Intent;
+import android.graphics.Bitmap;
+import android.graphics.BitmapFactory;
 import android.net.Uri;
 import android.os.Bundle;
 import android.provider.MediaStore;
@@ -19,6 +22,11 @@ import com.google.android.material.bottomappbar.BottomAppBar;
 import com.google.android.material.bottomnavigation.BottomNavigationView;
 import com.google.android.material.floatingactionbutton.FloatingActionButton;
 
+import java.io.File;
+import java.io.FileOutputStream;
+import java.io.InputStream;
+import java.util.UUID;
+
 public class CreatePost extends AppCompatActivity {
 
     private EditText descriptionInput;
@@ -28,14 +36,22 @@ public class CreatePost extends AppCompatActivity {
     private ImageButton backButton;
     private ImageView workoutImage;
 
+    private Uri savedImageUri = null;
+
     private final ActivityResultLauncher<Intent> imagePickerLauncher = registerForActivityResult(
             new ActivityResultContracts.StartActivityForResult(),
             result -> {
                 if (result.getResultCode() == RESULT_OK && result.getData() != null) {
                     Uri selectedImageUri = result.getData().getData();
                     if (selectedImageUri != null) {
-                        workoutImage.setImageURI(selectedImageUri);
-                        Toast.makeText(this, "Image selected", Toast.LENGTH_SHORT).show();
+                        Uri copiedUri = copyImageToInternalStorage(selectedImageUri);
+                        if (copiedUri != null) {
+                            savedImageUri = copiedUri;
+                            workoutImage.setImageURI(copiedUri);
+                            Toast.makeText(this, "Image selected", Toast.LENGTH_SHORT).show();
+                        } else {
+                            Toast.makeText(this, "Failed to copy image", Toast.LENGTH_SHORT).show();
+                        }
                     }
                 }
             }
@@ -46,7 +62,6 @@ public class CreatePost extends AppCompatActivity {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.create_post);
 
-        // ✅ Attach FAB to BottomAppBar (enables cradle behavior)
         setSupportActionBar(findViewById(R.id.bottom_app_bar));
         initializeViews();
         setupClickListeners();
@@ -67,6 +82,7 @@ public class CreatePost extends AppCompatActivity {
 
         findViewById(R.id.add_photo_option).setOnClickListener(view -> {
             Intent intent = new Intent(Intent.ACTION_PICK, MediaStore.Images.Media.EXTERNAL_CONTENT_URI);
+            intent.setType("image/*");
             imagePickerLauncher.launch(intent);
         });
 
@@ -91,7 +107,6 @@ public class CreatePost extends AppCompatActivity {
             createPost(description, isPublic, allowComments);
         });
 
-        // ✅ Optional FAB setup (might do nothing on this page)
         FloatingActionButton fab = findViewById(R.id.fab);
         fab.setOnClickListener(view -> {
             Toast.makeText(this, "FAB clicked (you’re already here)", Toast.LENGTH_SHORT).show();
@@ -102,11 +117,42 @@ public class CreatePost extends AppCompatActivity {
         createPostButton.setEnabled(false);
         createPostButton.setText("Creating...");
 
-        createPostButton.postDelayed(() -> {
+        workoutImage.postDelayed(() -> {
+            if (savedImageUri != null) {
+                Post newPost = new Post(savedImageUri);
+                PostRepository.addPost(newPost);
+            } else {
+                Post fallbackPost = new Post(R.drawable.testimage);
+                PostRepository.addPost(fallbackPost);
+            }
+
             Toast.makeText(this, "Post created successfully!", Toast.LENGTH_SHORT).show();
             finish();
             overridePendingTransition(0, 0);
-        }, 1500);
+        }, 1000);
+    }
+
+    private Uri copyImageToInternalStorage(Uri sourceUri) {
+        try {
+            ContentResolver resolver = getContentResolver();
+            InputStream inputStream = resolver.openInputStream(sourceUri);
+
+            if (inputStream != null) {
+                File imageFile = new File(getFilesDir(), "post_" + UUID.randomUUID() + ".jpg");
+                FileOutputStream outputStream = new FileOutputStream(imageFile);
+
+                Bitmap bitmap = BitmapFactory.decodeStream(inputStream);
+                bitmap.compress(Bitmap.CompressFormat.JPEG, 100, outputStream);
+
+                inputStream.close();
+                outputStream.close();
+
+                return Uri.fromFile(imageFile);
+            }
+        } catch (Exception e) {
+            e.printStackTrace();
+        }
+        return null;
     }
 
     private void setupBottomNavigation() {
