@@ -113,6 +113,15 @@ public class AvatarActivity extends AppCompatActivity {
                     
                     // Show the custom image container
                     findViewById(R.id.custom_image_container).setVisibility(View.VISIBLE);
+                    
+                    // Add orange border to custom image container
+                    FrameLayout customImageFrame = findViewById(R.id.custom_image_frame);
+                    GradientDrawable shape = new GradientDrawable();
+                    shape.setShape(GradientDrawable.RECTANGLE);
+                    shape.setCornerRadius(16);
+                    shape.setColor(GRAY_COLOR);
+                    shape.setStroke(5, ORANGE_COLOR);
+                    customImageFrame.setBackground(shape);
                 } catch (IOException e) {
                     e.printStackTrace();
                 }
@@ -342,3 +351,4 @@ public class AvatarActivity extends AppCompatActivity {
         return image;
     }
 }
+
