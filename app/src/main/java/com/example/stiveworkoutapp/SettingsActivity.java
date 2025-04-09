@@ -73,46 +73,6 @@ public class SettingsActivity extends AppCompatActivity {
             }
         });
 
-        // Chats row
-        LinearLayout chatsLayout = findViewById(R.id.chatsLayout);
-        chatsLayout.setOnClickListener(new View.OnClickListener() {
-            @Override
-            public void onClick(View view) {
-                Intent intent = new Intent(SettingsActivity.this, ChatsActivity.class);
-                startActivity(intent);
-            }
-        });
-
-        // Notifications row
-        LinearLayout notificationsLayout = findViewById(R.id.notificationsLayout);
-        notificationsLayout.setOnClickListener(new View.OnClickListener() {
-            @Override
-            public void onClick(View view) {
-                Intent intent = new Intent(SettingsActivity.this, NotificationsActivity.class);
-                startActivity(intent);
-            }
-        });
-
-        // Storage and Data row
-        LinearLayout storageLayout = findViewById(R.id.storageLayout);
-        storageLayout.setOnClickListener(new View.OnClickListener() {
-            @Override
-            public void onClick(View view) {
-                Intent intent = new Intent(SettingsActivity.this, StorageActivity.class);
-                startActivity(intent);
-            }
-        });
-
-        // App Language row
-        LinearLayout languageLayout = findViewById(R.id.languageLayout);
-        languageLayout.setOnClickListener(new View.OnClickListener() {
-            @Override
-            public void onClick(View view) {
-                Intent intent = new Intent(SettingsActivity.this, LanguageActivity.class);
-                startActivity(intent);
-            }
-        });
-
         // Bottom Navigation setup
         BottomNavigationView bottomNav = findViewById(R.id.bottom_navigation);
         new BottomNavigationHandler(this, R.id.nav_account)
