@@ -51,8 +51,7 @@
             android:src="@drawable/profile_icon"
             app:layout_constraintEnd_toEndOf="parent"
             app:layout_constraintStart_toStartOf="parent"
-            app:layout_constraintTop_toBottomOf="@id/profile_text"
-            app:tint="@android:color/white" />
+            app:layout_constraintTop_toBottomOf="@id/profile_text" />
 
         <TextView
             android:id="@+id/username_text"
@@ -182,13 +181,18 @@
 
                 <!-- Friend Row 1 -->
                 <LinearLayout
+                    android:id="@+id/friend_row_1"
                     android:layout_width="wrap_content"
                     android:layout_height="wrap_content"
                     android:layout_marginBottom="8dp"
                     android:gravity="center"
-                    android:orientation="horizontal">
+                    android:orientation="horizontal"
+                    android:clickable="true"
+                    android:focusable="true"
+                    android:background="?attr/selectableItemBackground">
 
                     <TextView
+                        android:id="@+id/friend_name"
                         android:layout_width="wrap_content"
                         android:layout_height="wrap_content"
                         android:gravity="center"
@@ -216,13 +220,18 @@
 
                 <!-- Friend Row 2 -->
                 <LinearLayout
+                    android:id="@+id/friend_row_2"
                     android:layout_width="match_parent"
                     android:layout_height="wrap_content"
                     android:layout_marginBottom="8dp"
                     android:gravity="center"
-                    android:orientation="horizontal">
+                    android:orientation="horizontal"
+                    android:clickable="true"
+                    android:focusable="true"
+                    android:background="?attr/selectableItemBackground">
 
                     <TextView
+                        android:id="@+id/friend_name"
                         android:layout_width="wrap_content"
                         android:layout_height="wrap_content"
                         android:gravity="center"
@@ -250,13 +259,18 @@
 
                 <!-- Friend Row 3 -->
                 <LinearLayout
+                    android:id="@+id/friend_row_3"
                     android:layout_width="match_parent"
                     android:layout_height="wrap_content"
                     android:layout_marginBottom="8dp"
                     android:gravity="center"
-                    android:orientation="horizontal">
+                    android:orientation="horizontal"
+                    android:clickable="true"
+                    android:focusable="true"
+                    android:background="?attr/selectableItemBackground">
 
                     <TextView
+                        android:id="@+id/friend_name"
                         android:layout_width="wrap_content"
                         android:layout_height="wrap_content"
                         android:gravity="center"

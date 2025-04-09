@@ -5,6 +5,6 @@ plugins {
 }
 configurations.all {
     resolutionStrategy {
-        resolutionStrategy.force("androidx.coordinatorlayout:coordinatorlayout:1.1.0")
+        resolutionStrategy.force("androidx.coordinatorlayout:coordinatorlayout:1.2.0")
     }
 }
