@@ -7,6 +7,7 @@ import android.view.View;
 import android.view.ViewGroup;
 import android.widget.Button;
 import android.widget.TextView;
+import android.widget.Toast;
 
 import androidx.annotation.NonNull;
 import androidx.recyclerview.widget.RecyclerView;
@@ -42,8 +43,14 @@ public class FriendsAdapter extends RecyclerView.Adapter<FriendsAdapter.FriendVi
 
         // Bind the click listener to the view profile button
         holder.viewProfileButton.setOnClickListener(v -> listener.onFriendClick(friend));
-    }
 
+        // Add poke button click listener
+        holder.pokeButton.setOnClickListener(v -> {
+            Context context = v.getContext();
+            String message = friend.getName() + " has been notified";
+            Toast.makeText(context, message, Toast.LENGTH_SHORT).show();
+        });
+    }
     @Override
     public int getItemCount() {
         return friends.size();

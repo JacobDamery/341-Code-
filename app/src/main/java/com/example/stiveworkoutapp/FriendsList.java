@@ -1,6 +1,7 @@
 package com.example.stiveworkoutapp;
 
 import android.content.Intent;
+import android.graphics.ComposeShader;
 import android.os.Bundle;
 import android.widget.Button;
 import android.widget.TextView;
@@ -79,15 +80,13 @@ public class FriendsList extends AppCompatActivity {
         Button followingButton = findViewById(R.id.following_button);
 
         forYouButton.setOnClickListener(view -> {
-            Intent intent = new Intent(this, AccountFeed.class);
+            Intent intent = new Intent(this, PostsActivity.class);
             startActivity(intent);
-            overridePendingTransition(0, 0);
         });
 
         followingButton.setOnClickListener(view -> {
-            Intent intent = new Intent(this, AccountFeed.class);
+            Intent intent = new Intent(this, PostsActivity.class);
             startActivity(intent);
-            overridePendingTransition(0, 0);
         });
 
         // Friends is active, no click handler needed

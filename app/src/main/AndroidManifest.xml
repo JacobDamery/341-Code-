@@ -37,6 +37,8 @@
         <activity android:name=".PersonalInfoActivity" />
         <activity android:name=".PrivacyActivity" />
         <activity android:name=".StorageActivity" />
+        <activity android:name=".UserProfileActivity" />
+        <activity android:name=".CommentsActivity" />
 
 
         <meta-data

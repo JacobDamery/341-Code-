@@ -5,7 +5,6 @@ import android.content.Intent;
 import com.google.android.material.bottomnavigation.BottomNavigationView;
 
 public class BottomNavigationHandler {
-
     private final Activity activity;
     private final int selectedItemId;
 
@@ -28,10 +27,8 @@ public class BottomNavigationHandler {
 
             if (itemId == R.id.nav_home) {
                 intent = new Intent(activity, MainActivity.class);
-            } else if (itemId == R.id.nav_goals) {
-                intent = new Intent(activity, Goals.class);
             } else if (itemId == R.id.nav_account_feed) {
-                intent = new Intent(activity, AccountFeed.class);
+                intent = new Intent(activity, PostsActivity.class); // Changed from AccountFeed to PostsActivity
             } else if (itemId == R.id.nav_account) {
                 intent = new Intent(activity, AccountActivity.class);
             }
@@ -39,10 +36,10 @@ public class BottomNavigationHandler {
             if (intent != null) {
                 activity.startActivity(intent);
                 activity.overridePendingTransition(0, 0);
-                return true;
             }
 
             return false;
         });
     }
 }
+
