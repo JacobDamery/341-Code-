@@ -38,8 +38,13 @@ android {
 dependencies {
     implementation("de.hdodenhof:circleimageview:3.1.0")
     implementation(libs.androidx.core.ktx)
-    implementation(libs.androidx.appcompat)
-    implementation(libs.material)
+    implementation(libs.androidx.appcompat) {
+        exclude(group = "androidx.coordinatorlayout", module = "coordinatorlayout")
+    }
+    implementation(libs.material) {
+        exclude(group = "androidx.coordinatorlayout", module = "coordinatorlayout")
+    }
+    implementation("androidx.coordinatorlayout:coordinatorlayout:1.2.0")
     implementation(libs.androidx.activity)
     implementation(libs.androidx.constraintlayout)
     testImplementation(libs.junit)

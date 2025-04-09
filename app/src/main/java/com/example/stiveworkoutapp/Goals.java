@@ -23,11 +23,13 @@ public class Goals extends AppCompatActivity {
     private Calendar currentDate = Calendar.getInstance();
     private SharedPreferences sharedPreferences;
     private static final String PREFS_NAME = "DailyGoalsPrefs";
+    private UserLevel userLevel;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.goals);
+        userLevel = new UserLevel(this);
 
         // Initialize SharedPreferences
         sharedPreferences = getSharedPreferences(PREFS_NAME, MODE_PRIVATE);
@@ -73,7 +75,26 @@ public class Goals extends AppCompatActivity {
         // Setup weekly progress tracker
         setupWeeklyProgress();
     }
+    private void checkGoalCompletion() {
+        String dateKey = getDateKey(currentDate);
 
+        // Get values with consistent default of "0"
+        String stepsStr = sharedPreferences.getString(dateKey + "_steps", "0");
+        String sleepStr = sharedPreferences.getString(dateKey + "_sleep", "0");
+        String caloriesStr = sharedPreferences.getString(dateKey + "_calories", "0");
+
+        // Parse values safely
+        int steps = parseGoalValue(stepsStr);
+        int sleep = parseGoalValue(sleepStr);
+        int calories = parseGoalValue(caloriesStr);
+
+        // Check if all goals are met
+        boolean allGoalsCompleted = steps >= 20000 && sleep >= 8 && calories >= 2000;
+
+        if (allGoalsCompleted && !userLevel.isDayCompleted(dateKey)) {
+            userLevel.addCompletedDay(dateKey);
+        }
+    }
     private void navigateDate(int days) {
         saveDailyData(); // Save current data before changing date
         currentDate.add(Calendar.DAY_OF_MONTH, days);
@@ -180,6 +201,7 @@ public class Goals extends AppCompatActivity {
         editor.putString(dateKey + "_calories", etCalories.getText().toString().trim());
 
         editor.apply();
+        checkGoalCompletion();
 
         // Refresh weekly progress display
         setupWeeklyProgress();

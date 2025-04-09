@@ -1,6 +1,7 @@
 package com.example.stiveworkoutapp;
 
 import android.os.Bundle;
+import android.widget.ImageView;
 import android.widget.TextView;
 import androidx.appcompat.app.AppCompatActivity;
 import androidx.recyclerview.widget.LinearLayoutManager;
@@ -52,8 +53,14 @@ public class UserProfileActivity extends AppCompatActivity {
         BottomNavigationView bottomNav = findViewById(R.id.bottom_navigation);
         new BottomNavigationHandler(this, R.id.nav_account_feed)
                 .setupBottomNavigation(bottomNav);
+                
+        // Setup back arrow functionality
+        ImageView backArrow = findViewById(R.id.back_arrow);
+        backArrow.setOnClickListener(view -> {
+            // Go back to previous activity
+            finish();
+        });
     }
-
     private void initializeUserPosts(String username) {
         userPosts.clear();
         switch (username) {

@@ -42,5 +42,7 @@
         app:itemIconTint="@color/nav_item_color"
         app:itemTextColor="@color/nav_item_color"
         app:labelVisibilityMode="labeled"
+        app:layout_anchor="@+id/bottom_app_bar"
+        app:layout_anchorGravity="center"
         app:menu="@menu/bottom_nav_menu" />
 </androidx.coordinatorlayout.widget.CoordinatorLayout>
