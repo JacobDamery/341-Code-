@@ -1,11 +1,9 @@
 package com.example.stiveworkoutapp;
 
 import android.content.Intent;
-import android.content.SharedPreferences;
 import android.net.Uri;
 import android.os.Bundle;
 import android.provider.MediaStore;
-import android.view.View;
 import android.widget.Button;
 import android.widget.EditText;
 import android.widget.ImageButton;
@@ -30,7 +28,8 @@ public class CreatePost extends AppCompatActivity {
     private Button createPostButton;
     private ImageButton backButton;
     private ImageView workoutImage;
-    private LinearLayout shareToOption;
+    private LinearLayout addPhotoOption;
+    private LinearLayout tagPeopleOption;
 
     private final ActivityResultLauncher<Intent> imagePickerLauncher = registerForActivityResult(
             new ActivityResultContracts.StartActivityForResult(),
@@ -50,14 +49,10 @@ public class CreatePost extends AppCompatActivity {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.create_post);
 
-        // ✅ Attach FAB to BottomAppBar (enables cradle behavior)
         setSupportActionBar(findViewById(R.id.bottom_app_bar));
         initializeViews();
         setupClickListeners();
         setupBottomNavigation();
-        
-        // Check sharing preferences and update UI
-        checkSharingPreferences();
     }
 
     private void initializeViews() {
@@ -67,33 +62,20 @@ public class CreatePost extends AppCompatActivity {
         createPostButton = findViewById(R.id.create_post_button);
         backButton = findViewById(R.id.back_button);
         workoutImage = findViewById(R.id.workout_image);
-        shareToOption = findViewById(R.id.share_to_option);
-    }
-    
-    private void checkSharingPreferences() {
-        SharedPreferences preferences = getSharedPreferences(PrivacyActivity.PRIVACY_PREFS, MODE_PRIVATE);
-        boolean sharingEnabled = preferences.getBoolean(PrivacyActivity.SHARING_ENABLED, true);
-        
-        // Show or hide the sharing section based on privacy setting
-        if (shareToOption != null) {
-            shareToOption.setVisibility(sharingEnabled ? View.VISIBLE : View.GONE);
-        }
+        addPhotoOption = findViewById(R.id.add_photo_option);
+        tagPeopleOption = findViewById(R.id.tag_people_option);
     }
 
     private void setupClickListeners() {
         backButton.setOnClickListener(view -> finish());
 
-        findViewById(R.id.add_photo_option).setOnClickListener(view -> {
+        addPhotoOption.setOnClickListener(view -> {
             Intent intent = new Intent(Intent.ACTION_PICK, MediaStore.Images.Media.EXTERNAL_CONTENT_URI);
             imagePickerLauncher.launch(intent);
         });
 
-        findViewById(R.id.tag_people_option).setOnClickListener(view -> {
+        tagPeopleOption.setOnClickListener(view -> {
             Toast.makeText(this, "Tag people clicked", Toast.LENGTH_SHORT).show();
-        });
-
-        findViewById(R.id.add_location_option).setOnClickListener(view -> {
-            Toast.makeText(this, "Add location clicked", Toast.LENGTH_SHORT).show();
         });
 
         createPostButton.setOnClickListener(view -> {
@@ -109,11 +91,12 @@ public class CreatePost extends AppCompatActivity {
             createPost(description, isPublic, allowComments);
         });
 
-        // ✅ Optional FAB setup (might do nothing on this page)
         FloatingActionButton fab = findViewById(R.id.fab);
-        fab.setOnClickListener(view -> {
-            Toast.makeText(this, "FAB clicked (you're already here)", Toast.LENGTH_SHORT).show();
-        });
+        if (fab != null) {
+            fab.setOnClickListener(view -> {
+                Toast.makeText(this, "FAB clicked (you're already here)", Toast.LENGTH_SHORT).show();
+            });
+        }
     }
 
     private void createPost(String description, boolean isPublic, boolean allowComments) {

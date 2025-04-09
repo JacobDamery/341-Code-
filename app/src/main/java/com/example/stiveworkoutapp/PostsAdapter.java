@@ -1,5 +1,6 @@
 package com.example.stiveworkoutapp;
 
+import android.content.Context;
 import android.content.Intent;
 import android.view.LayoutInflater;
 import android.view.View;
@@ -39,7 +40,6 @@ public class PostsAdapter extends RecyclerView.Adapter<PostsAdapter.PostViewHold
 
         // Set like and comment button click listeners
         holder.likeButton.setOnClickListener(v -> {
-            // Toggle like state
             boolean isLiked = v.getTag() != null && (boolean) v.getTag();
             v.setTag(!isLiked);
             ((ImageButton) v).setImageResource(isLiked ?
@@ -47,8 +47,11 @@ public class PostsAdapter extends RecyclerView.Adapter<PostsAdapter.PostViewHold
         });
 
         holder.commentButton.setOnClickListener(v -> {
-            Intent intent = new Intent(v.getContext(), CommentsActivity.class);
-            v.getContext().startActivity(intent);
+            Context context = v.getContext();
+            Intent intent = new Intent(context, CommentsActivity.class);
+            intent.putExtra("post_id", post.getId()); // Use the post's unique ID
+            intent.putExtra("post", post);
+            context.startActivity(intent);
         });
     }
 
