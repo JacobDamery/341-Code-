@@ -27,4 +27,9 @@
         <!-- Icon colors -->
         <item name="closeIconTint">@android:color/white</item>
     </style>
+
+    <style name="RoundedImageShape" parent="">
+        <item name="cornerFamily">rounded</item>
+        <item name="cornerSize">12dp</item> <!-- tweak curve radius -->
+    </style>
 </resources>
