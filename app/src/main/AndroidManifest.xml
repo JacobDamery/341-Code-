@@ -57,8 +57,6 @@
         <activity android:name=".StorageActivity" />
         <activity android:name=".UserProfileActivity" />
         <activity android:name=".CommentsActivity" />
-        <activity android:name=".StorageActivity"/>
-        <activity android:name=".UserProfileActivity"/>
 
         <meta-data
             android:name="preloaded_fonts"
