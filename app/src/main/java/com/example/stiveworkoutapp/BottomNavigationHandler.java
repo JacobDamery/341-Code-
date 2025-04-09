@@ -28,7 +28,9 @@ public class BottomNavigationHandler {
             if (itemId == R.id.nav_home) {
                 intent = new Intent(activity, MainActivity.class);
             } else if (itemId == R.id.nav_account_feed) {
-                intent = new Intent(activity, PostsActivity.class); // Changed from AccountFeed to PostsActivity
+                intent = new Intent(activity, PostsActivity.class);
+            } else if (itemId == R.id.nav_goals) {
+                intent = new Intent(activity, Goals.class);// Changed from AccountFeed to PostsActivity
             } else if (itemId == R.id.nav_account) {
                 intent = new Intent(activity, AccountActivity.class);
             }
