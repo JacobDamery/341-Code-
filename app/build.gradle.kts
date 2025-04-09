@@ -36,6 +36,7 @@ android {
 }
 
 dependencies {
+    implementation("de.hdodenhof:circleimageview:3.1.0")
     implementation(libs.androidx.core.ktx)
     implementation(libs.androidx.appcompat) {
         exclude(group = "androidx.coordinatorlayout", module = "coordinatorlayout")

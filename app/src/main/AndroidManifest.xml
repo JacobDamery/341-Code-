@@ -54,6 +54,9 @@
         <activity android:name=".NotificationsActivity" />
         <activity android:name=".PersonalInfoActivity" />
         <activity android:name=".PrivacyActivity" />
+        <activity android:name=".StorageActivity" />
+        <activity android:name=".UserProfileActivity" />
+        <activity android:name=".CommentsActivity" />
         <activity android:name=".StorageActivity"/>
         <activity android:name=".UserProfileActivity"/>
 

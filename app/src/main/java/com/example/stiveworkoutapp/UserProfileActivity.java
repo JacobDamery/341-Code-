@@ -4,10 +4,19 @@ import android.os.Bundle;
 import android.widget.ImageView;
 import android.widget.TextView;
 import androidx.appcompat.app.AppCompatActivity;
+import androidx.recyclerview.widget.LinearLayoutManager;
+import androidx.recyclerview.widget.RecyclerView;
 
 import com.google.android.material.bottomnavigation.BottomNavigationView;
 
+import java.util.ArrayList;
+import java.util.List;
+
 public class UserProfileActivity extends AppCompatActivity {
+    private List<Post> userPosts;
+    private PostsAdapter postsAdapter;
+    private RecyclerView postsRecyclerView;
+
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
@@ -31,6 +40,16 @@ public class UserProfileActivity extends AppCompatActivity {
         tvSleep.setText("Sleep: " + sleepHours + " hours");
         tvCalories.setText("Calories: " + caloriesBurned);
 
+        // Initialize RecyclerView for posts
+        userPosts = new ArrayList<>();
+        postsRecyclerView = findViewById(R.id.profile_posts_recycler_view);
+        postsRecyclerView.setLayoutManager(new LinearLayoutManager(this));
+        postsAdapter = new PostsAdapter(userPosts);
+        postsRecyclerView.setAdapter(postsAdapter);
+
+        // Initialize posts based on username
+        initializeUserPosts(name);
+
         BottomNavigationView bottomNav = findViewById(R.id.bottom_navigation);
         new BottomNavigationHandler(this, R.id.nav_account_feed)
                 .setupBottomNavigation(bottomNav);
@@ -41,5 +60,23 @@ public class UserProfileActivity extends AppCompatActivity {
             // Go back to previous activity
             finish();
         });
+    }
+    private void initializeUserPosts(String username) {
+        userPosts.clear();
+        switch (username) {
+            case "Sami":
+                userPosts.add(new Post("Sami", "Unreal push day incoming (i bench 405).", R.drawable.post7));
+                break;
+            case "Jacob":
+                userPosts.add(new Post("Jacob", "CARDIOOOO BABYYYYY!", R.drawable.post5));
+                break;
+            case "Ryan":
+                userPosts.add(new Post("Ryan", "Sunset Workout...", R.drawable.post6));
+                break;
+            case "Joaquin":
+                userPosts.add(new Post("Joaquin", "Ready for class!", R.drawable.post4));
+                break;
+        }
+        postsAdapter.notifyDataSetChanged();
     }
 }

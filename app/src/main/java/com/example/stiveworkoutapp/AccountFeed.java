@@ -6,9 +6,15 @@ import android.widget.Button;
 import android.widget.TextView;
 
 import androidx.appcompat.app.AppCompatActivity;
+import androidx.recyclerview.widget.LinearLayoutManager;
+import androidx.recyclerview.widget.RecyclerView;
+
 import com.google.android.material.bottomappbar.BottomAppBar;
 import com.google.android.material.bottomnavigation.BottomNavigationView;
 import com.google.android.material.floatingactionbutton.FloatingActionButton;
+
+import java.util.Arrays;
+import java.util.List;
 
 public class AccountFeed extends AppCompatActivity {
     @Override
@@ -31,6 +37,19 @@ public class AccountFeed extends AppCompatActivity {
             startActivity(intent);
             overridePendingTransition(0, 0);
         });
+
+        RecyclerView recyclerView = findViewById(R.id.posts_recycler_view);
+        recyclerView.setLayoutManager(new LinearLayoutManager(this));
+
+        List<Post> posts = Arrays.asList(
+                new Post("Sami", "Enjoying the sunset!", R.drawable.post1),
+                new Post("Ryan", "Had a great workout today!", R.drawable.post2),
+                new Post("Joaquin", "Loving this new place!", R.drawable.post3),
+                new Post("Jacob", "Throwback to last summer!", R.drawable.share)
+        );
+
+        PostsAdapter adapter = new PostsAdapter(posts);
+        recyclerView.setAdapter(adapter);
 
         // Setup navigation buttons
         Button forYouButton = findViewById(R.id.for_you_button);
