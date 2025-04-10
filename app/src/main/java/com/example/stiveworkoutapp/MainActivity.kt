@@ -2,6 +2,7 @@ package com.example.stiveworkoutapp
 
 import android.content.Intent
 import android.content.SharedPreferences
+import android.graphics.Color
 import android.graphics.Typeface
 import android.net.Uri
 import android.os.Bundle
@@ -72,6 +73,12 @@ class MainActivity : AppCompatActivity() {
 
         // Initialize search functionality
         val searchView = findViewById<SearchView>(R.id.searchView)
+        val searchEditTextId = searchView.context.resources.getIdentifier("android:id/search_src_text", null, null)
+        val searchEditText = searchView.findViewById<EditText>(searchEditTextId)
+
+        searchEditText.setTextColor(Color.WHITE)
+        searchEditText.setHintTextColor(ContextCompat.getColor(this, R.color.text_secondary)) // 👈 change hint color
+
         searchView.setOnQueryTextListener(object : SearchView.OnQueryTextListener {
             override fun onQueryTextSubmit(query: String?): Boolean = false
 
