@@ -7,13 +7,11 @@
     android:layout_width="match_parent"
     android:layout_height="match_parent"
     android:background="@android:color/black"
-    tools:context=".AccountActivity"
-    >
+    tools:context=".AccountActivity">
 
     <androidx.constraintlayout.widget.ConstraintLayout
         android:layout_width="match_parent"
-        android:layout_height="match_parent"
-        >
+        android:layout_height="match_parent">
 
         <ImageView
             android:id="@+id/settings_icon"
@@ -80,7 +78,6 @@
             app:layout_constraintStart_toStartOf="parent"
             app:layout_constraintTop_toBottomOf="@id/username_text" />
 
-
         <androidx.constraintlayout.widget.ConstraintLayout
             android:id="@+id/stats_container"
             android:layout_width="wrap_content"
@@ -143,23 +140,19 @@
                 app:layout_constraintEnd_toEndOf="parent"
                 app:layout_constraintStart_toEndOf="@+id/friends_count_text"
                 app:layout_constraintTop_toTopOf="parent" />
-
         </androidx.constraintlayout.widget.ConstraintLayout>
 
         <LinearLayout
             android:id="@+id/friends_favorites_container"
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
-            android:layout_marginStart="0dp"
             android:layout_marginTop="24dp"
-            android:layout_marginEnd="0dp"
             android:gravity="center"
             android:orientation="horizontal"
-            app:layout_constraintEnd_toEndOf="parent"
+            app:layout_constraintTop_toBottomOf="@+id/stats_container"
             app:layout_constraintStart_toStartOf="parent"
-            app:layout_constraintTop_toBottomOf="@+id/stats_container">
+            app:layout_constraintEnd_toEndOf="parent">
 
-            <!-- Left Card: Top Friends -->
             <LinearLayout
                 android:id="@+id/top_friends_card"
                 android:layout_width="120dp"
@@ -170,7 +163,6 @@
                 android:orientation="vertical"
                 android:padding="6dp">
 
-                <!-- Title (Centered) -->
                 <TextView
                     android:id="@+id/top_friends_title"
                     android:layout_width="match_parent"
@@ -182,7 +174,7 @@
                     android:textSize="16sp"
                     android:textStyle="bold" />
 
-                <!-- Friend Row 1 -->
+                <!-- Row 1 -->
                 <LinearLayout
                     android:id="@+id/friend_row_1"
                     android:layout_width="wrap_content"
@@ -195,7 +187,6 @@
                     android:background="?attr/selectableItemBackground">
 
                     <TextView
-                        android:id="@+id/friend_name"
                         android:layout_width="wrap_content"
                         android:layout_height="wrap_content"
                         android:gravity="center"
@@ -221,7 +212,7 @@
                         android:textSize="12sp" />
                 </LinearLayout>
 
-                <!-- Friend Row 2 -->
+                <!-- Row 2 -->
                 <LinearLayout
                     android:id="@+id/friend_row_2"
                     android:layout_width="match_parent"
@@ -234,7 +225,6 @@
                     android:background="?attr/selectableItemBackground">
 
                     <TextView
-                        android:id="@+id/friend_name"
                         android:layout_width="wrap_content"
                         android:layout_height="wrap_content"
                         android:gravity="center"
@@ -260,7 +250,7 @@
                         android:textSize="12sp" />
                 </LinearLayout>
 
-                <!-- Friend Row 3 -->
+                <!-- Row 3 -->
                 <LinearLayout
                     android:id="@+id/friend_row_3"
                     android:layout_width="match_parent"
@@ -273,7 +263,6 @@
                     android:background="?attr/selectableItemBackground">
 
                     <TextView
-                        android:id="@+id/friend_name"
                         android:layout_width="wrap_content"
                         android:layout_height="wrap_content"
                         android:gravity="center"
@@ -298,10 +287,8 @@
                         android:textColor="@android:color/white"
                         android:textSize="12sp" />
                 </LinearLayout>
-
             </LinearLayout>
 
-            <!-- Favourites -->
             <LinearLayout
                 android:id="@+id/favourites_card"
                 android:layout_width="120dp"
@@ -313,7 +300,6 @@
                 android:orientation="vertical"
                 android:padding="0dp">
 
-                <!-- Title  -->
                 <TextView
                     android:id="@+id/favourites_title"
                     android:layout_width="match_parent"
@@ -325,7 +311,7 @@
                     android:textSize="16sp"
                     android:textStyle="bold" />
 
-                <!-- Favourite Row 1 -->
+                <!-- Fav Row 1 -->
                 <LinearLayout
                     android:layout_width="match_parent"
                     android:layout_height="wrap_content"
@@ -336,7 +322,6 @@
                     <TextView
                         android:layout_width="wrap_content"
                         android:layout_height="wrap_content"
-                        android:gravity="center"
                         android:text="Push"
                         android:textColor="@android:color/white"
                         android:textSize="14sp" />
@@ -349,17 +334,13 @@
                         android:layout_width="wrap_content"
                         android:layout_height="wrap_content"
                         android:background="@drawable/chip_bg"
-                        android:gravity="center"
-                        android:paddingLeft="4dp"
-                        android:paddingTop="2dp"
-                        android:paddingRight="4dp"
-                        android:paddingBottom="2dp"
+                        android:padding="4dp"
                         android:text="10"
                         android:textColor="@android:color/white"
                         android:textSize="12sp" />
                 </LinearLayout>
 
-                <!-- Favourite Row 2 -->
+                <!-- Fav Row 2 -->
                 <LinearLayout
                     android:layout_width="match_parent"
                     android:layout_height="wrap_content"
@@ -370,7 +351,6 @@
                     <TextView
                         android:layout_width="wrap_content"
                         android:layout_height="wrap_content"
-                        android:gravity="center"
                         android:text="Cardio"
                         android:textColor="@android:color/white"
                         android:textSize="14sp" />
@@ -383,17 +363,13 @@
                         android:layout_width="wrap_content"
                         android:layout_height="wrap_content"
                         android:background="@drawable/chip_bg"
-                        android:gravity="center"
-                        android:paddingLeft="4dp"
-                        android:paddingTop="2dp"
-                        android:paddingRight="4dp"
-                        android:paddingBottom="2dp"
+                        android:padding="4dp"
                         android:text="10"
                         android:textColor="@android:color/white"
                         android:textSize="12sp" />
                 </LinearLayout>
 
-                <!-- Favourite Row 3 -->
+                <!-- Fav Row 3 -->
                 <LinearLayout
                     android:layout_width="match_parent"
                     android:layout_height="wrap_content"
@@ -404,7 +380,6 @@
                     <TextView
                         android:layout_width="wrap_content"
                         android:layout_height="wrap_content"
-                        android:gravity="center"
                         android:text="Arms"
                         android:textColor="@android:color/white"
                         android:textSize="14sp" />
@@ -417,21 +392,14 @@
                         android:layout_width="wrap_content"
                         android:layout_height="wrap_content"
                         android:background="@drawable/chip_bg"
-                        android:gravity="center"
-                        android:paddingLeft="4dp"
-                        android:paddingTop="2dp"
-                        android:paddingRight="4dp"
-                        android:paddingBottom="2dp"
+                        android:padding="4dp"
                         android:text="10"
                         android:textColor="@android:color/white"
                         android:textSize="12sp" />
                 </LinearLayout>
-
             </LinearLayout>
-
         </LinearLayout>
 
-        <!-- Container for posts section -->
         <LinearLayout
             android:id="@+id/your_posts_container"
             android:layout_width="match_parent"
@@ -446,7 +414,6 @@
             app:layout_constraintStart_toStartOf="parent"
             app:layout_constraintEnd_toEndOf="parent">
 
-            <!-- Header row -->
             <LinearLayout
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
@@ -454,7 +421,6 @@
                 android:gravity="center_vertical"
                 android:padding="4dp">
 
-                <!-- Your post -->
                 <TextView
                     android:id="@+id/your_posts_title"
                     android:layout_width="wrap_content"
@@ -465,14 +431,11 @@
                     android:textStyle="bold"
                     android:layout_marginEnd="8dp" />
 
-
-                <!-- Spacer -->
                 <Space
                     android:layout_width="0dp"
                     android:layout_height="wrap_content"
                     android:layout_weight="1" />
 
-                <!-- see all -->
                 <LinearLayout
                     android:layout_width="wrap_content"
                     android:layout_height="wrap_content"
@@ -500,7 +463,6 @@
                         android:textStyle="bold"
                         android:onClick="openPostsActivity"/>
                 </LinearLayout>
-
             </LinearLayout>
 
             <LinearLayout
@@ -510,27 +472,32 @@
                 android:orientation="horizontal"
                 android:padding="0dp">
 
-                <ImageView
+                <com.google.android.material.imageview.ShapeableImageView
+                    android:id="@+id/post_image_1"
                     android:layout_width="100dp"
                     android:layout_height="100dp"
                     android:layout_marginEnd="8dp"
                     android:scaleType="centerCrop"
-                    android:src="@drawable/post1" />
-
-                <ImageView
+                    android:src="@drawable/post1"
+                    app:shapeAppearanceOverlay="@style/RoundedImageShape" />
+                <com.google.android.material.imageview.ShapeableImageView
+                    android:id="@+id/post_image_2"
                     android:layout_width="100dp"
                     android:layout_height="100dp"
                     android:layout_marginEnd="8dp"
                     android:scaleType="centerCrop"
-                    android:src="@drawable/post2" />
+                    android:src="@drawable/post2"
+                    app:shapeAppearanceOverlay="@style/RoundedImageShape" />
 
-                <ImageView
+                <com.google.android.material.imageview.ShapeableImageView
+                    android:id="@+id/post_image_3"
                     android:layout_width="100dp"
                     android:layout_height="100dp"
+                    android:layout_marginEnd="8dp"
                     android:scaleType="centerCrop"
-                    android:src="@drawable/post3" />
+                    android:src="@drawable/post3"
+                    app:shapeAppearanceOverlay="@style/RoundedImageShape" />
             </LinearLayout>
-
         </LinearLayout>
 
         <ImageView
@@ -545,14 +512,11 @@
             app:layout_constraintEnd_toEndOf="parent"
             app:layout_constraintTop_toTopOf="parent"
             app:tint="@android:color/white" />
-
     </androidx.constraintlayout.widget.ConstraintLayout>
-
 
     <include
         layout="@layout/bottom_nav_fab"
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
         android:layout_gravity="bottom"/>
-
 </androidx.coordinatorlayout.widget.CoordinatorLayout>

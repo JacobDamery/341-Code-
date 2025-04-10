@@ -20,6 +20,11 @@ import com.google.android.material.bottomappbar.BottomAppBar;
 import com.google.android.material.bottomnavigation.BottomNavigationView;
 import com.google.android.material.floatingactionbutton.FloatingActionButton;
 
+import java.io.File;
+import java.io.FileOutputStream;
+import java.io.InputStream;
+import java.io.OutputStream;
+
 public class CreatePost extends AppCompatActivity {
 
     private EditText descriptionInput;
@@ -31,11 +36,13 @@ public class CreatePost extends AppCompatActivity {
     private LinearLayout addPhotoOption;
     private LinearLayout tagPeopleOption;
 
+    private Uri selectedImageUri = null;
+
     private final ActivityResultLauncher<Intent> imagePickerLauncher = registerForActivityResult(
             new ActivityResultContracts.StartActivityForResult(),
             result -> {
                 if (result.getResultCode() == RESULT_OK && result.getData() != null) {
-                    Uri selectedImageUri = result.getData().getData();
+                    selectedImageUri = result.getData().getData();
                     if (selectedImageUri != null) {
                         workoutImage.setImageURI(selectedImageUri);
                         Toast.makeText(this, "Image selected", Toast.LENGTH_SHORT).show();
@@ -80,34 +87,74 @@ public class CreatePost extends AppCompatActivity {
 
         createPostButton.setOnClickListener(view -> {
             String description = descriptionInput.getText().toString();
-            boolean isPublic = publicSwitch.isChecked();
-            boolean allowComments = commentsSwitch.isChecked();
 
             if (description.isEmpty()) {
                 Toast.makeText(this, "Please write a description", Toast.LENGTH_SHORT).show();
                 return;
             }
 
-            createPost(description, isPublic, allowComments);
+            if (selectedImageUri == null) {
+                Toast.makeText(this, "Please select an image", Toast.LENGTH_SHORT).show();
+                return;
+            }
+
+            createPost();
         });
 
         FloatingActionButton fab = findViewById(R.id.fab);
         if (fab != null) {
-            fab.setOnClickListener(view -> {
-                Toast.makeText(this, "FAB clicked (you're already here)", Toast.LENGTH_SHORT).show();
-            });
+            fab.setOnClickListener(view ->
+                    Toast.makeText(this, "FAB clicked (you're already here)", Toast.LENGTH_SHORT).show());
         }
     }
 
-    private void createPost(String description, boolean isPublic, boolean allowComments) {
+    private void createPost() {
         createPostButton.setEnabled(false);
         createPostButton.setText("Creating...");
 
         createPostButton.postDelayed(() -> {
-            Toast.makeText(this, "Post created successfully!", Toast.LENGTH_SHORT).show();
-            finish();
-            overridePendingTransition(0, 0);
-        }, 1500);
+            String localUri = saveImageToInternalStorage(selectedImageUri);
+            if (localUri != null) {
+                Intent intent = new Intent(this, AccountActivity.class);
+                intent.putExtra("new_post_uri", localUri);
+                intent.setFlags(Intent.FLAG_ACTIVITY_CLEAR_TOP | Intent.FLAG_ACTIVITY_SINGLE_TOP);
+                startActivity(intent);
+                finish();
+            } else {
+                Toast.makeText(this, "Failed to save image", Toast.LENGTH_SHORT).show();
+                createPostButton.setEnabled(true);
+                createPostButton.setText("Create Post");
+            }
+        }, 1000);
+    }
+
+    private String saveImageToInternalStorage(Uri sourceUri) {
+        try {
+            InputStream inputStream = getContentResolver().openInputStream(sourceUri);
+            if (inputStream == null) return null;
+
+            File dir = new File(getFilesDir(), "posts");
+            if (!dir.exists()) dir.mkdirs();
+
+            String fileName = "post_" + System.currentTimeMillis() + ".jpg";
+            File outFile = new File(dir, fileName);
+            OutputStream outputStream = new FileOutputStream(outFile);
+
+            byte[] buffer = new byte[4096];
+            int length;
+            while ((length = inputStream.read(buffer)) > 0) {
+                outputStream.write(buffer, 0, length);
+            }
+
+            outputStream.close();
+            inputStream.close();
+
+            return Uri.fromFile(outFile).toString();
+
+        } catch (Exception e) {
+            e.printStackTrace();
+            return null;
+        }
     }
 
     private void setupBottomNavigation() {

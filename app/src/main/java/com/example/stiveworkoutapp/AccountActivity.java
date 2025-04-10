@@ -123,3 +123,24 @@ package com.example.stiveworkoutapp;
                 loadProfileImage();
             }
         }
+    }
+
+
+    private void saveImageUris(List<String> uris) {
+        SharedPreferences prefs = getSharedPreferences(PREFS_NAME, Context.MODE_PRIVATE);
+        String joined = String.join("||", uris); // safer delimiter
+        prefs.edit().putString(KEY_POST_URIS, joined).apply();
+        Log.d(TAG, "Saved URIs: " + joined);
+    }
+
+    private List<String> loadImageUris() {
+        SharedPreferences prefs = getSharedPreferences(PREFS_NAME, Context.MODE_PRIVATE);
+        String saved = prefs.getString(KEY_POST_URIS, "");
+        if (saved.isEmpty()) return new ArrayList<>();
+        return new ArrayList<>(Arrays.asList(saved.split("\\|\\|")));
+    }
+
+    public void openPostsActivity(android.view.View view) {
+        startActivity(new Intent(this, PostsActivity.class));
+    }
+}
