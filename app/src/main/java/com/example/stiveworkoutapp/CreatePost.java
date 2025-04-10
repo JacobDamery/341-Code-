@@ -1,6 +1,7 @@
 package com.example.stiveworkoutapp;
 
 import android.content.Intent;
+import android.content.SharedPreferences;
 import android.net.Uri;
 import android.os.Bundle;
 import android.provider.MediaStore;
@@ -24,6 +25,9 @@ import java.io.File;
 import java.io.FileOutputStream;
 import java.io.InputStream;
 import java.io.OutputStream;
+import java.util.ArrayList;
+import java.util.Arrays;
+import java.util.List;
 
 public class CreatePost extends AppCompatActivity {
 
@@ -115,8 +119,23 @@ public class CreatePost extends AppCompatActivity {
         createPostButton.postDelayed(() -> {
             String localUri = saveImageToInternalStorage(selectedImageUri);
             if (localUri != null) {
+
+                // 🔽 Save to SharedPreferences
+                SharedPreferences prefs = getSharedPreferences("UserInfo", MODE_PRIVATE);
+                String saved = prefs.getString("postUris", "");
+                List<String> updatedUris = new ArrayList<>();
+
+                if (!saved.isEmpty()) {
+                    updatedUris = new ArrayList<>(Arrays.asList(saved.split("\\|\\|")));
+                }
+
+                updatedUris.add(localUri); // add the new post URI at the end
+                String joined = String.join("||", updatedUris);
+                prefs.edit().putString("postUris", joined).apply();
+                // 🔼 End save
+
+                // Navigate back to AccountActivity
                 Intent intent = new Intent(this, AccountActivity.class);
-                intent.putExtra("new_post_uri", localUri);
                 intent.setFlags(Intent.FLAG_ACTIVITY_CLEAR_TOP | Intent.FLAG_ACTIVITY_SINGLE_TOP);
                 startActivity(intent);
                 finish();
@@ -127,6 +146,7 @@ public class CreatePost extends AppCompatActivity {
             }
         }, 1000);
     }
+
 
     private String saveImageToInternalStorage(Uri sourceUri) {
         try {

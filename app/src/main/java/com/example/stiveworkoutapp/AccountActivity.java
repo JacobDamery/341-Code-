@@ -130,6 +130,34 @@ public class AccountActivity extends AppCompatActivity {
     public void openPostsActivity(View view) {
         startActivity(new Intent(this, PostsActivity.class));
     }
+    private void updateYourPostsSection() {
+        SharedPreferences prefs = getSharedPreferences("UserInfo", MODE_PRIVATE);
+        String saved = prefs.getString("postUris", "");
+        List<String> uris = saved.isEmpty() ? new ArrayList<>() : new ArrayList<>(Arrays.asList(saved.split("\\|\\|")));
+
+        // Show only most recent 3 posts, reverse the list
+        List<String> recent = new ArrayList<>();
+        for (int i = uris.size() - 1; i >= 0 && recent.size() < 3; i--) {
+            recent.add(uris.get(i));
+        }
+
+        List<ImageView> imageViews = Arrays.asList(
+                findViewById(R.id.post_image_1),
+                findViewById(R.id.post_image_2),
+                findViewById(R.id.post_image_3)
+        );
+
+        int i = 0;
+        for (; i < recent.size(); i++) {
+            imageViews.get(i).setImageURI(Uri.parse(recent.get(i)));
+        }
+
+        // Fill remaining with fallback images if needed
+        int[] fallbacks = {R.drawable.post1, R.drawable.post2, R.drawable.post3};
+        for (int j = 0; i < 3 && j < fallbacks.length; i++, j++) {
+            imageViews.get(i).setImageResource(fallbacks[j]);
+        }
+    }
 
     @Override
     protected void onResume() {
@@ -137,5 +165,6 @@ public class AccountActivity extends AppCompatActivity {
         TextView lvlText = findViewById(R.id.lvl_text);
         lvlText.setText(userLevel.getLevel() + "\nlvl");
         loadProfileImage();
+        updateYourPostsSection();
     }
 }
