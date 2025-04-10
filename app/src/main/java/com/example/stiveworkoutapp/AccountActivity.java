@@ -37,6 +37,9 @@ public class AccountActivity extends AppCompatActivity {
     private static final String KEY_POST_URIS = "postUris";
     private static final String TAG = "AccountActivity";
 
+    private TextView usernameTextView;
+    private TextView emailTextView;
+
     // Friend data
     private List<Friend> friends;
     private Map<String, UserProfile> friendProfiles;
@@ -58,8 +61,10 @@ public class AccountActivity extends AppCompatActivity {
         setContentView(R.layout.account_activity);
         userLevel = new UserLevel(this);
 
-        // Initialize profile image view
+        // Initialize profile image view and text views
         profileImageView = findViewById(R.id.profile_icon);
+        usernameTextView = findViewById(R.id.username_text);
+        emailTextView = findViewById(R.id.gmail_text);
 
         // Set click listener on profile image to open AvatarActivity
         profileImageView.setOnClickListener(v -> {
@@ -69,6 +74,9 @@ public class AccountActivity extends AppCompatActivity {
 
         // Load the saved avatar
         loadProfileImage();
+
+        // Load user profile information
+        loadUserProfileInfo();
 
         // Update the level display
         TextView lvlText = findViewById(R.id.lvl_text);
@@ -105,6 +113,27 @@ public class AccountActivity extends AppCompatActivity {
 
         // Update the friends count display
         updateFriendsCountText();
+    }
+
+    /**
+     * Loads and displays the user profile information (username and email)
+     * from SharedPreferences
+     */
+    private void loadUserProfileInfo() {
+        SharedPreferences sharedPreferences = getSharedPreferences(PREFS_NAME, MODE_PRIVATE);
+
+        // Get saved username and email
+        String username = sharedPreferences.getString("username", "username");
+        String email = sharedPreferences.getString("email", "username@gmail.com");
+
+        // Update UI with the saved information
+        if (!username.isEmpty()) {
+            usernameTextView.setText(username);
+        }
+
+        if (!email.isEmpty()) {
+            emailTextView.setText(email);
+        }
     }
 
     private void loadFriendData() {
@@ -260,5 +289,6 @@ public class AccountActivity extends AppCompatActivity {
         loadProfileImage();
         updateYourPostsSection();
         loadFriendData(); // Reload friend data when returning to this activity
+        loadUserProfileInfo(); // Reload user profile info when returning to the activity
     }
 }

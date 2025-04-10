@@ -39,14 +39,17 @@ public class PersonalInfoActivity extends AppCompatActivity {
     private LinearLayout dobContainer;
     private SharedPreferences sharedPreferences;
     private boolean isPhoneFormatting = false;
+    
+    // Use the same constant as in AccountActivity
+    private static final String PREFS_NAME = "UserInfo";
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_personal_info);
 
-        // Initialize SharedPreferences
-        sharedPreferences = getSharedPreferences("UserInfo", MODE_PRIVATE);
+        // Initialize SharedPreferences with the same name as AccountActivity
+        sharedPreferences = getSharedPreferences(PREFS_NAME, MODE_PRIVATE);
         
         // Initialize UI elements
         initializeViews();
@@ -360,27 +363,32 @@ public class PersonalInfoActivity extends AppCompatActivity {
         // All validations passed
         return true;
     }
-    
+
     private void saveUserData() {
         SharedPreferences.Editor editor = sharedPreferences.edit();
-        
+
         // Save all user information to SharedPreferences
-        editor.putString("username", usernameEditText.getText().toString().trim());
-        editor.putString("email", emailEditText.getText().toString().trim());
+        String username = usernameEditText.getText().toString().trim();
+        String email = emailEditText.getText().toString().trim();
+
+        // Save username and email (the ones that will be displayed in the profile)
+        editor.putString("username", username);
+        editor.putString("email", email);
+
+        // Save other fields
         editor.putString("phone", phoneEditText.getText().toString().trim());
         editor.putString("dob", dobTextView.getText().toString().trim());
         editor.putString("gender", genderSpinner.getSelectedItem().toString());
         editor.putString("address", addressEditText.getText().toString().trim());
         editor.putString("weight", weightEditText.getText().toString().trim());
         editor.putString("height", heightEditText.getText().toString().trim());
-        
-        // Apply changes
+
         editor.apply();
     }
-    
+
     @Override
     public void onBackPressed() {
-        // Navigate back to Settings
+        // Navigate back to Settings Activity
         Intent intent = new Intent(PersonalInfoActivity.this, SettingsActivity.class);
         startActivity(intent);
         finish();
