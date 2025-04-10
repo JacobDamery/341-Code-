@@ -177,20 +177,21 @@
                 <!-- Row 1 -->
                 <LinearLayout
                     android:id="@+id/friend_row_1"
-                    android:layout_width="wrap_content"
+                    android:layout_width="match_parent"
                     android:layout_height="wrap_content"
                     android:layout_marginBottom="8dp"
                     android:gravity="center"
                     android:orientation="horizontal"
                     android:clickable="true"
                     android:focusable="true"
+                    android:paddingVertical="2dp"
                     android:background="?attr/selectableItemBackground">
 
                     <TextView
                         android:layout_width="wrap_content"
                         android:layout_height="wrap_content"
                         android:gravity="center"
-                        android:text="username"
+                        android:text="Sami"
                         android:textColor="@android:color/white"
                         android:textSize="14sp" />
 
@@ -222,13 +223,14 @@
                     android:orientation="horizontal"
                     android:clickable="true"
                     android:focusable="true"
+                    android:paddingVertical="2dp"
                     android:background="?attr/selectableItemBackground">
 
                     <TextView
                         android:layout_width="wrap_content"
                         android:layout_height="wrap_content"
                         android:gravity="center"
-                        android:text="username"
+                        android:text="Ryan"
                         android:textColor="@android:color/white"
                         android:textSize="14sp" />
 
@@ -260,13 +262,14 @@
                     android:orientation="horizontal"
                     android:clickable="true"
                     android:focusable="true"
+                    android:paddingVertical="2dp"
                     android:background="?attr/selectableItemBackground">
 
                     <TextView
                         android:layout_width="wrap_content"
                         android:layout_height="wrap_content"
                         android:gravity="center"
-                        android:text="username"
+                        android:text="Joaquin"
                         android:textColor="@android:color/white"
                         android:textSize="14sp" />
 
